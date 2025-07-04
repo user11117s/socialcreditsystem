@@ -68,3 +68,7 @@ shadowJar {
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-parameters']
 }
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
