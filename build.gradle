@@ -68,7 +68,28 @@ shadowJar {
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-parameters']
 }
+
+tasks.register('sourcesJar', Jar) {
+    archiveBaseName.set('SocialCredit-API')
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+tasks.register('apiJavadocJar', Jar) {
+    dependsOn javadoc
+    archiveBaseName.set('SocialCredit-API')
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
 artifacts {
     archives sourcesJar
-    archives javadocJar
+    archives apiJavadocJar
+}
+jar {
+    archiveBaseName.set('SocialCredit-API')
+    from(sourceSets.main.output) {
+        include 'com/array64/socialCredit/api/**'
+        include 'com/array64/socialCredit/SocialCredit.class'
+    }
 }
