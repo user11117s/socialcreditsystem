@@ -1,5 +1,0 @@
-max_score: 1000
-default_score: 550
-enabled: true
-jedis_host: "localhost"
-jedis_port: 6379

@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.array64.socialCredit"},{"l":"com.array64.socialCredit.api"},{"l":"com.array64.socialCredit.api.exceptions"},{"l":"com.array64.socialCredit.internals"},{"l":"com.array64.socialCredit.internals.commands"},{"l":"com.array64.socialCredit.internals.listeners"}];updateSearchResults();
