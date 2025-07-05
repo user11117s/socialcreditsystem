@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.array64'
-version = '1.0.4'
+version = '1.0.5'
 
 repositories {
     mavenCentral()
@@ -109,7 +109,6 @@ publishing {
             groupId = project.group
             artifactId = 'SocialCredit-API'
             version = project.version
-            from components.java
 
             artifact apiJar
             artifact sourcesJar
