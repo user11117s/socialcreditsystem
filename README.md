@@ -17,7 +17,17 @@ A Spigot plugin for 1.21 servers that adds a Social Credit System.
 
 ## API
 
-Yet to share instructions to download the API.
+### Gradle
+Add this to your `repositories` block in your build.gradle file:
+```gradle
+maven {
+  url 'https://jitpack.io'
+}
+```
+Add this to your `dependencies` block in your build.gradle file:
+```gradle
+implementation 'com.github.user11117s:socialcreditsystem:1.0.2'
+```
 
 You can access the API using
 ```java
