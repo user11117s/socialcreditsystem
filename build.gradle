@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.array64'
-version = '1.0.2'
+version = '1.0.3'
 
 repositories {
     mavenCentral()
@@ -40,7 +40,6 @@ java {
     if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
-    withJavadocJar()
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -69,28 +68,35 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-parameters']
 }
 
+static def packJar(Jar task, String classifier, sourcePath) {
+    task.archiveBaseName.set('SocialCredit-API')
+    task.archiveClassifier.set(classifier)
+    task.from(sourcePath) {
+        include 'com/array64/socialCredit/api/**'
+        include 'com/array64/socialCredit/SocialCredit.*'
+    }
+}
+
 tasks.register('sourcesJar', Jar) {
-    archiveBaseName.set('SocialCredit-API')
-    archiveClassifier.set('sources')
-    from sourceSets.main.allSource
+    packJar it, 'sources', sourceSets.main.allSource // Why do we have pronouns in this language?
 }
 
 tasks.register('apiJavadocJar', Jar) {
     dependsOn javadoc
-    archiveBaseName.set('SocialCredit-API')
-    archiveClassifier.set('javadoc')
-    from javadoc.destinationDir
+    packJar it, 'javadoc', javadoc.destinationDir
+}
+
+tasks.register('apiJar', Jar) {
+    packJar it, '', sourceSets.main.output
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 artifacts {
+    archives apiJar
     archives sourcesJar
     archives apiJavadocJar
 }
-jar {
-    archiveBaseName.set('SocialCredit-API')
-    from(sourceSets.main.output) {
-        include 'com/array64/socialCredit/api/**'
-        include 'com/array64/socialCredit/SocialCredit.class'
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+jar.configure {
+    enabled = false
 }
