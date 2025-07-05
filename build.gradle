@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    // id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'com.array64'
@@ -60,10 +60,10 @@ processResources {
     }
 }
 
-shadowJar {
+/* shadowJar {
     relocate 'redis.clients.jedis', 'com.array64.socialCredit.shadow.redis.clients.jedis'
     archiveClassifier.set("")
-}
+} */
 
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-parameters']
@@ -92,4 +92,5 @@ jar {
         include 'com/array64/socialCredit/api/**'
         include 'com/array64/socialCredit/SocialCredit.class'
     }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
