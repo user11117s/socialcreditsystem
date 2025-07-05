@@ -26,7 +26,7 @@ maven {
 ```
 Add this to your `dependencies` block in your build.gradle file:
 ```gradle
-implementation 'com.github.user11117s:socialcreditsystem:1.0.2'
+implementation 'com.github.user11117s:socialcreditsystem:1.0.5'
 ```
 
 You can access the API using
